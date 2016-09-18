@@ -119,7 +119,6 @@ export default {
     },
     route: {
         data ({ to }) {
-            console.log(to.params.id)
             return {
                 active: to.params.id ? parseInt(to.params.id)-1 : this.active,
                 detail: to.params.id ? true : false,
@@ -153,16 +152,17 @@ export default {
         position: fixed;        
         top: 60px;
         width: calc(100% - 80px);
-        height: 100%;
-        padding-bottom: 100px;
+        height: calc(100% - 60px);
         box-sizing: border-box;
         overflow: hidden;
+        z-index: 2
         transition: top 0.5s ease-in-out
         &.detail
-            top: -500px
+            top: calc(220px - 100%);
+            transition: top 0.6s ease-out
         &.scroll
-            top: -600px
-            transition: top 0.3s ease
+            top: calc(0px - 100%);
+            transition: top 0.6s cubic-bezier(0.895, 0.03, 0.685, 0.22)
 		
     #ga-container
         height: 100%;

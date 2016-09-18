@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import App from './app.vue'
 import Intro from './components/intro.vue'
 import Content from './components/content.vue'
+import About_site from './components/about_site.vue'
 
 Vue.use(Router)
 Vue.transition('fade', {
@@ -25,6 +26,9 @@ router.map({
 				component: Content
 			}
 		}
+	},
+	'/about_site':{
+		component: About_site
 	},
 
 })

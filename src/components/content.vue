@@ -1,13 +1,10 @@
 <template>
-	<div class="content-container">
-		<div id="item">
-			<content-item :img="imgs[0]"></content-item>
-		</div>
-		<div id="item">
-			<content-item :img="imgs[1]"></content-item>
-		</div>
-		<router-view></router-view>
+<div class="content-container">
+	<div class="co-row" v-for="(i, row) in rows">
+		<content-item v-for="(j, item) in rows[i].items" :item="rows[i].items[j]" :data="rows[i].intros[j==0?0:1]"></content-item>
 	</div>
+	<router-view></router-view>
+</div>
 </template>
 <script type="text/javascript">
 	import contentItem from './contentItem.vue'
@@ -18,7 +15,45 @@
 		},
 		data() {
 			return {
-				imgs: ['data/img/baidu1.jpg', 'data/img/baidu2.jpg', 'data/img/微软合照.jpg'],
+				
+				rows: [{
+					height: 500,
+					items: [{
+						type: 'img',
+						content: 'data/img/baidu1.jpg',
+						width: ''
+					}, {
+						type: 'img',
+						content: 'data/img/baidu2.jpg',
+						width: ''
+					}],
+					intros: ['百度大厦','中巴键盘'],
+				}, 
+				{
+					height: 500,
+					items: [{
+						type: 'img',
+						content: 'data/img/baidu1.jpg',
+						width: ''
+					}, {
+						type: 'img',
+						content: 'data/img/baidu2.jpg',
+						width: ''
+					}],
+					intros: ['百度大厦','中巴键盘'],
+				}, {
+					height: 500,
+					items: [{
+						type: 'img',
+						content: 'data/img/baidu1.jpg',
+						width: ''
+					}, {
+						type: 'img',
+						content: 'data/img/baidu2.jpg',
+						width: ''
+					}],
+					intros: ['百度大厦','中巴键盘'],
+				}]
 			}
 		},
 		props: ['scroll'],
@@ -26,11 +61,11 @@
 			let view = $('.view')[0]
 			var scrollTmp = $(view).scrollTop();
 			$(view).scroll(() => {
-				if ($(view).scrollTop() - scrollTmp >= 60) {
+				if($(view).scrollTop() - scrollTmp >= 60) {
 					scrollTmp = $(view).scrollTop();
 					this.scroll = true
 				}
-				if (scrollTmp - $(view).scrollTop() >= 10) {
+				if(scrollTmp - $(view).scrollTop() >= 10) {
 					scrollTmp = $(view).scrollTop();
 					this.scroll = false
 				}
@@ -38,46 +73,17 @@
 		}
 	}
 </script>
-<style type="text/css">
-	.content-container {
-		z-index: -1;
-		text-align: center;
-		display: -webkit-flex;
-		display: flex;
-		justify-content: center;
+<style lang="stylus">
+	.content-container
+		z-index: 1;
+		//display: flex;
 		position: relative;
-		top: 500px;
-		left: 80px;
-		width: 93%;
-		height: 100%;
+		top: 180px;
+		width: 100%;
+		padding: 0 40px 120px;
 		box-sizing: border-box;
-		overflow: hidden;
-	}
 	
-	#item {
-		display: inline-block;
-		border-style: solid;
-		border-color: white;
-		border-width: 40px;
-		-webkit-flex: 1;
-		flex: 1;
-		position: relative;
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
-	}
-	
-	.item+.item {
-		margin-left: 20px;
-	}
-	
-	.back {
-		z-index: 11;
-		position: fixed;
-		top: 500px;
-		margin: auto;
-		left: 50%;
-		background:url(/data/img/up.png);
-		background-color: gray;
-	}
+	.co-row
+		width: 100%
+
 </style>

@@ -7,7 +7,7 @@
         </div>
         <div id="background" :style="'background-image:url('+bgimg+');'"></div>
         <router-view class="view" :bgimg.sync="bgimg"></router-view>
-        <div id="about"><p>关于网站 / ABOUT SITE</p></div>
+        <div id="about" v-link="{ path: '/about_site', append:true }"><p>关于网站 / ABOUT SITE</p></div>
     </div>
 </template>
 
@@ -35,7 +35,7 @@
 
 html, body, #app
     height: 100%;
-    overflow-x: hidden
+    overflow: hidden
 
 ::-webkit-scrollbar
     width: 4px;
@@ -46,11 +46,11 @@ html, body, #app
 ::-webkit-scrollbar-corner
     background: 0 0;
 ::-webkit-scrollbar-thumb
-    background: #dbc3b3;
+    background: #333;
     border: 0 #fff;
     border-radius: 0;
 ::-webkit-scrollbar-thumb:hover
-    background: #dbc3b3;
+    background: #333;
 ::-webkit-scrollbar-track
     background: #fff;
     border: 0 #fff;
@@ -75,7 +75,7 @@ html, body, #app
     position: fixed;
     height: 100%;
     width: calc(100% - 80px);
-    padding: 60px 40px 0;
+    margin: 60px 40px 0;
     box-sizing: border-box;
     backface-visibility: hidden;
     z-index: -1;
@@ -87,7 +87,7 @@ html, body, #app
 .view
     position: relative
     padding: 0 40px
-    min-height: 100%
+    height: 100%
     width: 100%
     overflow-x: hidden;
     box-sizing: border-box;
@@ -106,6 +106,7 @@ html, body, #app
     transform: translateX(-50%);
     background-color: #333//rgb(112, 163, 168);
     cursor: pointer;
+    z-index: 2
     p
         padding: 5px 0;
         margin: 0;
