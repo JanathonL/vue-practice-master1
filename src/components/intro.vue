@@ -36,7 +36,7 @@
                 <svg viewBox="0 0 24 24"><path d="M9 4L7.6 5.4l6.6 6.6-6.6 6.6L9 20l8-8"></path></svg>
             </div>
         </div>
-        <router-view :scroll.sync="scroll"></router-view>
+        <router-view :scroll.sync="scroll" :item.sync="item"></router-view>
     </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
     components: {
         galleryItem
     },
-    props: ['bgimg'],
+    props: ['bgimg', 'item'],
     data() {
         return {
             titles: ['众里寻他千百度','在SAP的大楼里','微软与巨硬'],
@@ -121,19 +121,8 @@ export default {
         data ({ to }) {
             return {
                 active: to.params.id ? parseInt(to.params.id)-1 : this.active,
-                detail: to.params.id ? true : false,
+                detail: to.params.id ? true : false
             }
-        }
-    },
-    transition: {
-        fade: {
-            type: 'animation',
-            enterClass: 'fadeInLeft',
-            leaveClass: 'fadeOutRight'
-        },
-        rotate: {
-            enterClass: 'rotateInUpLeft',
-            leaveClass: 'rotateOutDownLeft'
         }
     }
 }
@@ -149,17 +138,25 @@ export default {
         transition: all 1s ease-in 
 
     .gallery
-        position: fixed;        
-        top: 60px;
+        position: fixed;
+        top: 60px;        
         width: calc(100% - 80px);
         height: calc(100% - 60px);
+        padding-bottom: 40px;
         box-sizing: border-box;
         overflow: hidden;
         z-index: 2
-        transition: top 0.5s ease-in-out
+        transition: top 0.6s cubic-bezier(0.895, 0.03, 0.685, 0.22)
         &.detail
             top: calc(220px - 100%);
             transition: top 0.6s ease-out
+            .item-nav
+                opacity: 0
+                transition: opacity 0.5s ease-in-out
+            &:hover
+                top: calc(260px - 100%);
+                .item-nav
+                    opacity: 1
         &.scroll
             top: calc(0px - 100%);
             transition: top 0.6s cubic-bezier(0.895, 0.03, 0.685, 0.22)

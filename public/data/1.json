@@ -1,0 +1,41 @@
+[
+    {
+        "height": 500,
+        "items": [
+            {
+                "type": "img",
+                "name": "baidu1",
+                "description": "核心价值观",
+                "content": "data/img/baidu1.jpg",
+                "width": ""
+            },
+            {
+                "type": "img",
+                "name": "baidu2",
+                "description": "hahaha",
+                "content": "data/img/baidu2.jpg",
+                "width": ""
+            }
+        ]
+    },
+    {
+        "height": 500,
+        "items": [
+            {
+                "type": "img",
+                "name": "baidu3",
+                "description": "hahaha",
+                "content": "data/img/baidu3.jpg",
+                "width": ""
+            },
+            {
+                "type": "img",
+                "name": "baidu4",
+                "description": "hahaha",
+                "content": "data/img/baidu4.jpg",
+                "width": ""
+            }
+        ]
+    }
+    
+]

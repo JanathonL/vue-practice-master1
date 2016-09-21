@@ -7,7 +7,7 @@
             <span :class="'underline'+titleClass"></span>
         </a>
         <a v-link="{ path: (detail ? '/intro' : index), append:true }" :class="{'item-nav': true, 'detail': detail}">
-            <p>查看详细·DETAIL</p>
+            <p>{{ detail ? '返回·BACK' : '查看详细·DETAIL' }}</p>
         </a>
     </div>
 </template>
@@ -46,7 +46,7 @@
             width: 100%;
 
     .title
-        position: absolute 
+        position: absolute
         display: inline-block;
         text-decoration: none;
         top: 40%;
@@ -87,12 +87,12 @@
         position: absolute;
         display: inline-block;
         letter-spacing: 2px;
-        bottom: 80px;
+        bottom: 50px;
         left: 50%;
         transform: translateX(-50%);
         border: 2px solid #fff;
         padding: 25px 0;
-        transition: bottom 0.5s ease
+        transition: bottom 0.5s cubic-bezier(0.895, 0.03, 0.685, 0.22)
         &.detail
             bottom: 10px
         p

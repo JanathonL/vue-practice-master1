@@ -6,8 +6,8 @@
             </p>
         </div>
         <div id="background" :style="'background-image:url('+bgimg+');'"></div>
-        <router-view class="view" :bgimg.sync="bgimg"></router-view>
-        <div id="about" v-link="{ path: '/about_site', append:true }"><p>关于网站 / ABOUT SITE</p></div>
+        <router-view class="view" id="view" :bgimg.sync="bgimg" :item.sync="item"></router-view>
+        <div v-show="!item" transition="flip" class="animated" id="about"><p>关于网站 / ABOUT SITE</p></div>
     </div>
 </template>
 
@@ -16,7 +16,8 @@
         name: 'app',
         data() {
             return {
-                bgimg: ''
+                bgimg: '',
+                item: false
             }
         }
     }
@@ -107,7 +108,60 @@ html, body, #app
     background-color: #333//rgb(112, 163, 168);
     cursor: pointer;
     z-index: 2
+    opacity: 1
     p
         padding: 5px 0;
         margin: 0;
+
+@keyframes myFlipOutX {
+  from {
+    transform: translateX(-50%) perspective(400px);
+  }
+
+  30% {
+    transform: translateX(-50%) perspective(400px) rotate3d(1, 0, 0, -20deg);
+    opacity: 1;
+  }
+
+  to {
+    transform: translateX(-50%) perspective(400px) rotate3d(1, 0, 0, 90deg);
+    opacity: 0;
+  }
+}
+
+.myFlipOutX {
+  backface-visibility: visible !important;
+  animation-name: myFlipOutX;
+}
+
+@keyframes myFlipInX {
+  from {
+    transform: translateX(-50%) perspective(400px) rotate3d(1, 0, 0, 90deg);
+    animation-timing-function: ease-in;
+    opacity: 0;
+  }
+
+  40% {
+    transform: translateX(-50%) perspective(400px) rotate3d(1, 0, 0, -20deg);
+    animation-timing-function: ease-in;
+  }
+
+  60% {
+    transform: translateX(-50%) perspective(400px) rotate3d(1, 0, 0, 10deg);
+    opacity: 1;
+  }
+
+  80% {
+    transform: translateX(-50%) perspective(400px) rotate3d(1, 0, 0, -5deg);
+  }
+
+  to {
+    transform: translateX(-50%) perspective(400px);
+  }
+}
+
+.myFlipInX {
+  backface-visibility: visible !important;
+  animation-name: myFlipInX;
+}
 </style>

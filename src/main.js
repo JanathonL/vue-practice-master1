@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import App from './app.vue'
 import Intro from './components/intro.vue'
 import Content from './components/content.vue'
-import About_site from './components/about_site.vue'
+import Item from './components/item.vue'
 
 Vue.use(Router)
 Vue.transition('fade', {
@@ -16,21 +16,27 @@ Vue.transition('slide', {
 	leaveClass: 'slideOutLeft',
 })
 
+Vue.transition('flip', {
+	enterClass: 'myFlipInX',
+	leaveClass: 'myFlipOutX',
+})
+
 var router = new Router({})
 
 router.map({
 	'/intro': {
 		component: Intro,
-			subRoutes: {
+		subRoutes: {
 			'/:id': {
-				component: Content
+				component: Content,
+				subRoutes: {
+					'/:name': {
+						component: Item
+					}
+				}
 			}
 		}
-	},
-	'/about_site':{
-		component: About_site
-	},
-
+	}
 })
 
 router.redirect({
